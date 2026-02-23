@@ -1,0 +1,181 @@
+/*
+ * Sunset Theme — Warm oranges and rosy accents
+ *
+ * Apply via: <html data-color-theme="sunset">
+ * Or paste the :root block below to make Sunset the default palette.
+ *
+ * To make this the default (without data-color-theme attribute):
+ *   Copy the :root block and add it to src/themes/active.css
+ */
+
+[data-color-theme="sunset"] {
+  --background: 30 30% 99%;
+  --foreground: 20 25% 10%;
+  --card: 30 25% 97%;
+  --card-foreground: 20 25% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 25% 10%;
+  --primary: 25 90% 48%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 350 40% 90%;
+  --secondary-foreground: 20 25% 10%;
+  --muted: 30 20% 93%;
+  --muted-foreground: 20 12% 50%;
+  --accent: 350 70% 88%;
+  --accent-foreground: 350 70% 22%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --warning: 45 96% 52%;
+  --warning-foreground: 0 0% 100%;
+  --success: 152 55% 38%;
+  --success-foreground: 0 0% 100%;
+  --info: 205 75% 42%;
+  --info-foreground: 0 0% 100%;
+  --border: 25 20% 88%;
+  --input: 25 20% 88%;
+  --ring: 25 90% 48%;
+  --chart-1: 25 90% 50%;
+  --chart-2: 350 70% 55%;
+  --chart-3: 45 96% 52%;
+  --chart-4: 10 80% 55%;
+  --chart-5: 280 45% 55%;
+  --sidebar-background: 30 25% 96%;
+  --sidebar-foreground: 20 25% 10%;
+  --sidebar-primary: 25 90% 48%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 30 20% 91%;
+  --sidebar-accent-foreground: 20 25% 10%;
+  --sidebar-border: 25 20% 88%;
+  --sidebar-ring: 25 90% 48%;
+}
+
+.dark [data-color-theme="sunset"],
+[data-color-mode="dark"] [data-color-theme="sunset"] {
+  --background: 20 30% 5%;
+  --foreground: 30 20% 95%;
+  --card: 20 25% 8%;
+  --card-foreground: 30 20% 95%;
+  --popover: 20 25% 8%;
+  --popover-foreground: 30 20% 95%;
+  --primary: 25 90% 65%;
+  --primary-foreground: 25 90% 8%;
+  --secondary: 20 25% 14%;
+  --secondary-foreground: 30 20% 90%;
+  --muted: 20 20% 14%;
+  --muted-foreground: 30 12% 60%;
+  --accent: 350 45% 15%;
+  --accent-foreground: 350 55% 85%;
+  --destructive: 0 70% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --warning: 45 96% 62%;
+  --warning-foreground: 45 96% 8%;
+  --success: 152 55% 55%;
+  --success-foreground: 152 55% 8%;
+  --info: 205 75% 60%;
+  --info-foreground: 205 75% 8%;
+  --border: 20 20% 16%;
+  --input: 20 20% 16%;
+  --ring: 25 90% 65%;
+  --chart-1: 25 90% 63%;
+  --chart-2: 350 70% 65%;
+  --chart-3: 45 96% 62%;
+  --chart-4: 10 80% 65%;
+  --chart-5: 280 45% 65%;
+  --sidebar-background: 20 28% 7%;
+  --sidebar-foreground: 30 20% 90%;
+  --sidebar-primary: 25 90% 65%;
+  --sidebar-primary-foreground: 25 90% 8%;
+  --sidebar-accent: 20 20% 12%;
+  --sidebar-accent-foreground: 30 20% 90%;
+  --sidebar-border: 20 20% 16%;
+  --sidebar-ring: 25 90% 65%;
+}
+
+/*
+ * ─── MAKE SUNSET THE DEFAULT ─────────────────────────────────────────────────
+ * Uncomment the block below to use Sunset as the default palette
+ * (no data-color-theme attribute needed on <html>).
+ * Comment out the blocks above if you do this.
+ */
+/*
+:root {
+  --background: 30 30% 99%;
+  --foreground: 20 25% 10%;
+  --card: 30 25% 97%;
+  --card-foreground: 20 25% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 25% 10%;
+  --primary: 25 90% 48%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 350 40% 90%;
+  --secondary-foreground: 20 25% 10%;
+  --muted: 30 20% 93%;
+  --muted-foreground: 20 12% 50%;
+  --accent: 350 70% 88%;
+  --accent-foreground: 350 70% 22%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --warning: 45 96% 52%;
+  --warning-foreground: 0 0% 100%;
+  --success: 152 55% 38%;
+  --success-foreground: 0 0% 100%;
+  --info: 205 75% 42%;
+  --info-foreground: 0 0% 100%;
+  --border: 25 20% 88%;
+  --input: 25 20% 88%;
+  --ring: 25 90% 48%;
+  --chart-1: 25 90% 50%;
+  --chart-2: 350 70% 55%;
+  --chart-3: 45 96% 52%;
+  --chart-4: 10 80% 55%;
+  --chart-5: 280 45% 55%;
+  --sidebar-background: 30 25% 96%;
+  --sidebar-foreground: 20 25% 10%;
+  --sidebar-primary: 25 90% 48%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 30 20% 91%;
+  --sidebar-accent-foreground: 20 25% 10%;
+  --sidebar-border: 25 20% 88%;
+  --sidebar-ring: 25 90% 48%;
+}
+.dark {
+  --background: 20 30% 5%;
+  --foreground: 30 20% 95%;
+  --card: 20 25% 8%;
+  --card-foreground: 30 20% 95%;
+  --popover: 20 25% 8%;
+  --popover-foreground: 30 20% 95%;
+  --primary: 25 90% 65%;
+  --primary-foreground: 25 90% 8%;
+  --secondary: 20 25% 14%;
+  --secondary-foreground: 30 20% 90%;
+  --muted: 20 20% 14%;
+  --muted-foreground: 30 12% 60%;
+  --accent: 350 45% 15%;
+  --accent-foreground: 350 55% 85%;
+  --destructive: 0 70% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --warning: 45 96% 62%;
+  --warning-foreground: 45 96% 8%;
+  --success: 152 55% 55%;
+  --success-foreground: 152 55% 8%;
+  --info: 205 75% 60%;
+  --info-foreground: 205 75% 8%;
+  --border: 20 20% 16%;
+  --input: 20 20% 16%;
+  --ring: 25 90% 65%;
+  --chart-1: 25 90% 63%;
+  --chart-2: 350 70% 65%;
+  --chart-3: 45 96% 62%;
+  --chart-4: 10 80% 65%;
+  --chart-5: 280 45% 65%;
+  --sidebar-background: 20 28% 7%;
+  --sidebar-foreground: 30 20% 90%;
+  --sidebar-primary: 25 90% 65%;
+  --sidebar-primary-foreground: 25 90% 8%;
+  --sidebar-accent: 20 20% 12%;
+  --sidebar-accent-foreground: 30 20% 90%;
+  --sidebar-border: 20 20% 16%;
+  --sidebar-ring: 25 90% 65%;
+}
+*/

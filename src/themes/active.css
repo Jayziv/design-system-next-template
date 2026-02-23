@@ -1,0 +1,91 @@
+/*
+ * ─── ACTIVE THEME ────────────────────────────────────────────────────────────
+ *
+ * This file defines the ONE color palette shipped to production.
+ * Swap it for a different theme by copying from src/themes/examples/.
+ *
+ * Only :root (light) and .dark blocks are needed — no data-color-theme
+ * attribute required. The palette is baked at build time.
+ */
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 215 70% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --warning: 38 92% 50%;
+  --warning-foreground: 0 0% 100%;
+  --success: 142 71% 45%;
+  --success-foreground: 0 0% 100%;
+  --info: 205 82% 45%;
+  --info-foreground: 0 0% 100%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 215 70% 40%;
+  --chart-1: 215 70% 50%;
+  --chart-2: 262 83% 58%;
+  --chart-3: 142 71% 45%;
+  --chart-4: 38 92% 50%;
+  --chart-5: 0 72% 51%;
+  --sidebar-background: 210 40% 98%;
+  --sidebar-foreground: 222 47% 11%;
+  --sidebar-primary: 215 70% 40%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 210 40% 94%;
+  --sidebar-accent-foreground: 222 47% 11%;
+  --sidebar-border: 214 32% 91%;
+  --sidebar-ring: 215 70% 40%;
+}
+
+.dark {
+  --background: 222 47% 4%;
+  --foreground: 210 40% 98%;
+  --card: 222 47% 4%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222 47% 4%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 215 70% 65%;
+  --primary-foreground: 215 70% 10%;
+  --secondary: 215 30% 15%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 215 30% 15%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 215 30% 15%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 70% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --warning: 38 92% 60%;
+  --warning-foreground: 38 92% 10%;
+  --success: 142 71% 55%;
+  --success-foreground: 142 71% 10%;
+  --info: 205 82% 60%;
+  --info-foreground: 205 82% 10%;
+  --border: 215 30% 18%;
+  --input: 215 30% 18%;
+  --ring: 215 70% 65%;
+  --chart-1: 215 70% 60%;
+  --chart-2: 262 83% 68%;
+  --chart-3: 142 71% 55%;
+  --chart-4: 38 92% 60%;
+  --chart-5: 0 70% 61%;
+  --sidebar-background: 222 47% 7%;
+  --sidebar-foreground: 210 40% 90%;
+  --sidebar-primary: 215 70% 65%;
+  --sidebar-primary-foreground: 215 70% 10%;
+  --sidebar-accent: 215 30% 14%;
+  --sidebar-accent-foreground: 210 40% 90%;
+  --sidebar-border: 215 30% 18%;
+  --sidebar-ring: 215 70% 65%;
+}

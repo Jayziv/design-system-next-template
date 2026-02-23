@@ -1,0 +1,35 @@
+/*
+ * Brand Override Template
+ *
+ * Copy this into src/themes/active.css and customise the values.
+ * All values are bare HSL: hue saturation% lightness% (no hsl() wrapper)
+ *
+ * Use the Theme Customizer agent to generate values from hex codes:
+ *   "Customise theme: primary #2563EB, secondary #64748B, font Inter"
+ */
+
+:root {
+  /* Brand colors */
+  --primary: 215 70% 40%;           /* Main brand color */
+  --primary-foreground: 0 0% 100%;  /* Text on primary */
+
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
+
+  --accent: 210 40% 96%;
+  --accent-foreground: 222 47% 11%;
+
+  /* Component tokens */
+  --radius: 0.5rem;                 /* Base border radius */
+}
+
+.dark {
+  --primary: 215 70% 65%;
+  --primary-foreground: 215 70% 10%;
+
+  --secondary: 215 30% 15%;
+  --secondary-foreground: 210 40% 98%;
+
+  --accent: 215 30% 15%;
+  --accent-foreground: 210 40% 98%;
+}

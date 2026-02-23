@@ -1,0 +1,22 @@
+/* Note: @import "tailwindcss" is provided by the DS base styles import below.
+   If you remove the DS import, add @import "tailwindcss" here explicitly. */
+@import "@jayziv/design-system-core/styles";
+@import "@jayziv/design-system-core/styles/presets";
+
+/*
+ * ─── ACTIVE THEME ────────────────────────────────────────────────────────────
+ *
+ * Your active color palette. Edit src/themes/active.css to customise.
+ * The default palette is pre-populated — swap it for ocean/forest/sunset
+ * by copying from src/themes/examples/.
+ *
+ * The palette is baked at build time. No unused themes are shipped to the
+ * client. ThemeProvider only toggles light/dark mode at runtime.
+ */
+@import "../themes/active.css";
+
+/*
+ * ─── APP-LEVEL OVERRIDES ─────────────────────────────────────────────────────
+ * One-off token tweaks that don't belong in a reusable theme.
+ * Use bare :root { } — no @layer base needed in Tailwind CSS 4.
+ */
