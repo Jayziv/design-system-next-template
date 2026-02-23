@@ -6,8 +6,8 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-6 py-24 max-w-4xl">
         <div className="space-y-4 mb-16">
-          <Badge variant="secondary">Design System v1.1.0</Badge>
-          <Heading level={1} className="text-5xl font-bold">
+          <Badge variant="secondary">Design System v2.0.0</Badge>
+          <Heading as="h1" className="text-5xl font-bold">
             Your project is ready.
           </Heading>
           <Text className="text-xl text-muted-foreground max-w-2xl">
@@ -30,7 +30,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Card>
             <CardHeader>
-              <Heading level={3} className="text-base font-semibold">Theme</Heading>
+              <Heading as="h3" className="text-base font-semibold">Theme</Heading>
             </CardHeader>
             <CardContent>
               <Text className="text-sm text-muted-foreground">
@@ -42,7 +42,7 @@ export default function Home() {
           </Card>
           <Card>
             <CardHeader>
-              <Heading level={3} className="text-base font-semibold">Components</Heading>
+              <Heading as="h3" className="text-base font-semibold">Components</Heading>
             </CardHeader>
             <CardContent>
               <Text className="text-sm text-muted-foreground">
@@ -54,7 +54,7 @@ export default function Home() {
           </Card>
           <Card>
             <CardHeader>
-              <Heading level={3} className="text-base font-semibold">Agents</Heading>
+              <Heading as="h3" className="text-base font-semibold">Agents</Heading>
             </CardHeader>
             <CardContent>
               <Text className="text-sm text-muted-foreground">
