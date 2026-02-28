@@ -1,0 +1,32 @@
+{
+  "name": "TestimonialsSection",
+  "requestedBy": "Faeble Studio",
+  "date": "2026-02-28",
+  "category": "ui",
+  "priority": "high",
+  "description": "A full-bleed section component for displaying client testimonials in a carousel layout. Requires an opinionated layout: section header (label + heading), a looping auto-play carousel of testimonial cards, and prev/next navigation. Must integrate with the existing Carousel, Card, Avatar, and Text primitives internally.",
+  "proposedProps": {
+    "TestimonialItem": {
+      "id": "string",
+      "quote": "string",
+      "authorName": "string",
+      "authorRole": "string",
+      "authorImage": "string (optional) — URL for AvatarImage",
+      "authorInitials": "string (optional) — fallback for Avatar"
+    },
+    "TestimonialsSectionProps": {
+      "title": "React.ReactNode",
+      "subtitle": "React.ReactNode (optional)",
+      "label": "React.ReactNode (optional)",
+      "testimonials": "TestimonialItem[]",
+      "autoPlay": "boolean (optional) — default true",
+      "autoPlayInterval": "number (optional, ms) — default 5000",
+      "showNavigation": "boolean (optional) — default true"
+    }
+  },
+  "scenarioTags": ["marketing", "social-proof", "testimonials", "landing-page"],
+  "relatedComponents": ["Carousel", "Card", "Avatar", "Text", "Caption", "SectionLabel"],
+  "designNotes": "Cards should have a large opening quotation mark rendered in the primary color. Author attribution sits below the quote with Avatar (image or initials fallback) on the left and name/role stacked on the right. Background glow treatment similar to ContactSection. Auto-play should pause on hover/focus for accessibility.",
+  "accessibilityNotes": "Carousel must be navigable by keyboard. Auto-play must be pauseable and must respect prefers-reduced-motion (disable auto-play if motion is reduced). ARIA live region for current slide announcement.",
+  "exampleUsage": "See composition in src/app/page.tsx — Testimonials section"
+}

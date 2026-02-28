@@ -32,6 +32,19 @@ import { Button, Card, Heading, Text, cn } from "@jayziv/design-system-core"
 - Color palette: set `data-color-theme="ocean|forest|sunset|default"` on `<html>`
 - Custom brand: edit `src/themes/active.css` with `:root { ... }` overrides
 - Token format: bare HSL — `215 70% 40%` not `hsl(215, 70%, 40%)`
+- **Font overrides**: if your brand uses custom fonts via `next/font`, you MUST also set `--font-display` and `--font-body` in `active.css` `:root {}` — otherwise the DS preset fonts (e.g. `"Inter"` from the bold preset) will override your custom fonts after hydration
+
+## Critical: Tailwind CSS 4 `@source` directive
+
+DS components use Tailwind utility classes internally. Tailwind CSS 4 excludes `node_modules/` from automatic class scanning (gitignored). Without an explicit `@source` directive, **all utility classes used exclusively inside DS components will be missing from the compiled CSS** — causing broken layouts (e.g. nav items stacking vertically instead of horizontal, missing `fixed` positioning, missing responsive breakpoints).
+
+`src/app/globals.css` **must** contain:
+
+```css
+@source "../../node_modules/@jayziv/design-system-core/dist";
+```
+
+This line must remain in `globals.css` whenever this project consumes the DS. Never remove it. If the DS package path changes, update this path accordingly.
 
 ## Agents
 

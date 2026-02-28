@@ -4,6 +4,15 @@
 @import "@jayziv/design-system-core/styles/presets";
 
 /*
+ * ─── TAILWIND SOURCE SCANNING ────────────────────────────────────────────────
+ *
+ * Tailwind CSS 4 excludes node_modules from automatic class scanning.
+ * DS components use Tailwind utility classes internally, so we must
+ * explicitly tell Tailwind to scan the DS dist bundle.
+ */
+@source "../../node_modules/@jayziv/design-system-core/dist";
+
+/*
  * ─── ACTIVE THEME ────────────────────────────────────────────────────────────
  *
  * Your active color palette. Edit src/themes/active.css to customise.
@@ -20,3 +29,12 @@
  * One-off token tweaks that don't belong in a reusable theme.
  * Use bare :root { } — no @layer base needed in Tailwind CSS 4.
  */
+
+/* ── Faeble typography bindings ── */
+body {
+  font-family: var(--font-body, "Outfit"), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display, "Cormorant Garamond"), Georgia, serif;
+}
