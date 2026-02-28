@@ -40,7 +40,7 @@ import { Button, Card, Heading, Text, cn } from "@jayziv/design-system-core"
 | Planning a page | Page Planner |
 | Building a page | Page Builder |
 | Missing DS component | Component Requester |
-| Brand/theme setup | Theme Customizer |
+| Brand/theme setup | Theme Designer |
 
 ## File locations
 

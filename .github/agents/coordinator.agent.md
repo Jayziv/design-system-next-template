@@ -17,7 +17,7 @@ tools:
     execute/getTerminalOutput,
     read/terminalLastCommand,
   ]
-agents: [Planner, Builder, Tester, Reviewer, Publisher, Docs]
+agents: [Planner, Builder, Tester, Reviewer, Publisher, Docs, Theme Designer]
 model:
   - Claude Sonnet 4.6
 ---
