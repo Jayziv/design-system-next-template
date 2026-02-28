@@ -8,6 +8,16 @@ Built with Tailwind CSS 4, React 19, TypeScript. No React compiler.
 1. Read `node_modules/@jayziv/design-system-core/MANIFEST.json` — the full component inventory
 2. Check the component exists before importing it
 
+## Critical: Tailwind CSS 4 source scanning
+
+`globals.css` must always contain:
+
+```css
+@source "../../../node_modules/@jayziv/design-system-core";
+```
+
+This tells Tailwind CSS 4 to scan the DS package and include its utility classes in the build output. **Never remove this line.** If DS component styles appear to be missing (unstyled components, wrong colours, missing layout), this line is the first thing to check. If the DS package path in `node_modules` changes, update this path accordingly.
+
 ## Mandatory Rules
 
 1. **Semantic tokens only** — `bg-primary`, `text-foreground`, `border-input`. Never `bg-blue-500`, `text-[#ff0000]`, or inline styles.
