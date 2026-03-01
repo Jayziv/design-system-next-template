@@ -36,6 +36,8 @@ function ContactForm() {
       email: formData.get("email") as string,
       subject: formData.get("subject") as string,
       message: formData.get("message") as string,
+      // Honeypot — always empty for real users
+      website: formData.get("website") as string,
     }
 
     try {
@@ -69,6 +71,23 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {/*
+        Honeypot field — hidden from real users via sr-only + aria-hidden + tabIndex.
+        Bots that enumerate and fill all form fields will populate this, triggering
+        a silent server-side reject. Never use display:none or visibility:hidden here
+        as modern bots detect those and skip the field.
+      */}
+      <div className="sr-only" aria-hidden="true">
+        <Label htmlFor="website">Website</Label>
+        <Input
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>

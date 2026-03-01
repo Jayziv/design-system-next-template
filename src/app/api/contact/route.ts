@@ -1,17 +1,62 @@
 import { NextResponse } from "next/server"
 import { z } from "zod"
 
+// ---------------------------------------------------------------------------
+// In-memory rate limiter — 5 submissions per IP per 10 minutes.
+// Resets on server restart. For persistent limits across serverless instances
+// swap this out for Upstash Redis + @upstash/ratelimit (free tier available).
+//
+// TODO: Add Cloudflare Turnstile for CAPTCHA-level bot protection.
+//   1. Register a site at https://dash.cloudflare.com/?to=/:account/turnstile
+//   2. Add NEXT_PUBLIC_TURNSTILE_SITE_KEY + TURNSTILE_SECRET_KEY to .env.local
+//   3. Render <Turnstile siteKey={...} /> in the form (react-turnstile package)
+//   4. Send the token in the POST body and verify it here with:
+//      POST https://challenges.cloudflare.com/turnstile/v0/siteverify
+// ---------------------------------------------------------------------------
+const WINDOW_MS = 10 * 60 * 1000 // 10 minutes
+const MAX_REQUESTS = 5
+const ipRequestLog = new Map<string, number[]>()
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const timestamps = (ipRequestLog.get(ip) ?? []).filter((t) => now - t < WINDOW_MS)
+  if (timestamps.length >= MAX_REQUESTS) return true
+  timestamps.push(now)
+  ipRequestLog.set(ip, timestamps)
+  return false
+}
+
 const ContactSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
   email: z.string().email("Invalid email address"),
   message: z.string().min(10, "Message must be at least 10 characters").max(2000),
   subject: z.string().max(200).optional(),
+  // Honeypot — real users never see or fill this field; bots typically do.
+  website: z.string().max(0).optional(),
 })
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+      request.headers.get("x-real-ip") ??
+      "unknown"
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: "Too many requests. Please wait a few minutes before trying again." },
+        { status: 429 }
+      )
+    }
+
     const body = await request.json()
     const validation = ContactSchema.safeParse(body)
+
+    // Honeypot check — silently succeed so bots don't know they were blocked
+    if (body.website) {
+      return NextResponse.json({ success: true })
+    }
 
     if (!validation.success) {
       return NextResponse.json(
