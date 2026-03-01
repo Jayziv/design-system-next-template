@@ -97,6 +97,11 @@ export default function HomePage() {
         ctaButton={{ label: "Start a project", onClick: scrollToContact }}
       />
 
+      {/* ── Full-page particle background ─────────────────────────────── */}
+      <div className="fixed inset-0 -z-10 pointer-events-none">
+        <ParticleCanvas />
+      </div>
+
       <main>
         {/* ── Hero ───────────────────────────────────────────────────────── */}
         <HeroSection
@@ -109,7 +114,6 @@ export default function HomePage() {
           subtitle="Full-service studio for startups and scale-ups who believe design and engineering are the same conversation."
           primaryAction={{ label: "See our work", onClick: scrollToWork }}
           secondaryAction={{ label: "Get in touch", onClick: scrollToContact }}
-          background={<ParticleCanvas />}
         />
 
         {/* ── Services ───────────────────────────────────────────────────── */}

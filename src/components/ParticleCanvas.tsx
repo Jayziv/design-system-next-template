@@ -33,38 +33,42 @@ interface LayerConfig {
   coreHsl?: string
 }
 
+// Global radius bounds across all layers — used to compute per-particle depth
+const GLOBAL_RADIUS_MIN = 1.5
+const GLOBAL_RADIUS_MAX = 18
+
 const LAYERS: LayerConfig[] = [
-  // Back — large, slow emerald glows (original feel, slightly fewer)
+  // Back — large, slow emerald glows: soft bokeh, very diffuse
   {
     count: 16,
     radius: [8, 18],
-    spread: [12, 24],
-    opacity: [0.07, 0.3],
+    spread: [18, 32],
+    opacity: [0.06, 0.22],
     speed: 14,
     drift: 0,
     driftFreq: 0,
     hsl: "160, 84%, 39%",
   },
-  // Mid — smaller teal sparkles, moderate erratic drift
+  // Mid — teal sparkles, moderate definition
   {
     count: 18,
     radius: [2, 7],
     spread: [4, 10],
-    opacity: [0.12, 0.45],
+    opacity: [0.15, 0.5],
     speed: 28,
-    drift: 30,
-    driftFreq: 1.8,
+    drift: 0,
+    driftFreq: 0,
     hsl: "174, 72%, 52%",
   },
-  // Front — fantasy fireflies: hard bright core + wide warm halo
+  // Front — fantasy fireflies: hard bright core + tight halo
   {
     count: 14,
     radius: [1.5, 3.5],
-    spread: [14, 28],
-    opacity: [0.55, 0.85],
+    spread: [10, 20],
+    opacity: [0.6, 0.9],
     speed: 36,
-    drift: 50,
-    driftFreq: 2.6,
+    drift: 0,
+    driftFreq: 0,
     hsl: "48, 80%, 68%",
     firefly: true,
     coreHsl: "50, 100%, 94%",
@@ -90,6 +94,8 @@ interface Particle {
   driftFreq: number
   /** Pre-rendered offscreen glow sprite */
   image: HTMLCanvasElement
+  /** Depth factor 0 (foreground) → 1 (background) for scroll parallax */
+  depth: number
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -100,13 +106,15 @@ function rand(min: number, max: number): number {
 
 /**
  * Pre-render a soft radial-gradient glow onto an offscreen canvas.
- * Much cheaper than ctx.filter = blur() per frame.
+ * `depth` (0 = foreground / solid, 1 = background / diffuse) controls
+ * how solid the centre is vs. how much it bleeds into a soft bokeh.
  */
 function createGlowImage(
   radius: number,
   spread: number,
   opacity: number,
   hsl: string,
+  depth: number,
 ): HTMLCanvasElement {
   const size = Math.ceil((radius + spread) * 2)
   const off = document.createElement("canvas")
@@ -116,9 +124,17 @@ function createGlowImage(
   if (ctx) {
     const c = size / 2
     const g = ctx.createRadialGradient(c, c, 0, c, c, radius + spread)
-    g.addColorStop(0, `hsla(${hsl}, ${opacity})`)
-    g.addColorStop(0.4, `hsla(${hsl}, ${opacity * 0.55})`)
-    g.addColorStop(1, `hsla(${hsl}, 0)`)
+
+    // Depth-driven gradient shape:
+    //   foreground (depth≈0) → solid core that holds colour longer, tight fade
+    //   background (depth≈1) → core fades fast, wide soft bleed
+    const coreFade   = 1 - depth * 0.55          // centre opacity multiplier  1.0 → 0.45
+    const midStop    = 0.2 + (1 - depth) * 0.35  // where the mid ring sits    0.2 → 0.55
+    const midFade    = 0.25 + (1 - depth) * 0.5   // mid-ring opacity factor   0.25 → 0.75
+
+    g.addColorStop(0,       `hsla(${hsl}, ${opacity * coreFade})`)
+    g.addColorStop(midStop,  `hsla(${hsl}, ${opacity * midFade})`)
+    g.addColorStop(1,        `hsla(${hsl}, 0)`)
     ctx.fillStyle = g
     ctx.fillRect(0, 0, size, size)
   }
@@ -126,9 +142,9 @@ function createGlowImage(
 }
 
 /**
- * Firefly sprite: a small, very bright opaque core surrounded by a wide
- * warm halo that fades out smoothly. Gives a high-contrast "solid centre,
- * glowing edges" look — like fantasy fireflies or floating embers.
+ * Firefly sprite: a small, very bright opaque core surrounded by a
+ * warm halo.  `depth` tightens or loosens the halo to reinforce the
+ * depth-of-field illusion (fireflies are foreground, so depth is low).
  */
 function createFireflyImage(
   radius: number,
@@ -136,6 +152,7 @@ function createFireflyImage(
   opacity: number,
   hsl: string,
   coreHsl: string,
+  depth: number,
 ): HTMLCanvasElement {
   const size = Math.ceil((radius + spread) * 2)
   const off = document.createElement("canvas")
@@ -146,24 +163,29 @@ function createFireflyImage(
     const c = size / 2
     const outer = radius + spread
 
+    // Halo tightens for foreground particles (low depth)
+    const haloFade = 0.8 + depth * 0.2  // 0.8 → 1.0
+
     // Outer warm halo
     const halo = ctx.createRadialGradient(c, c, 0, c, c, outer)
-    halo.addColorStop(0, `hsla(${hsl}, ${opacity * 0.9})`)
-    halo.addColorStop(0.15, `hsla(${hsl}, ${opacity * 0.7})`)
-    halo.addColorStop(0.45, `hsla(${hsl}, ${opacity * 0.25})`)
-    halo.addColorStop(1, `hsla(${hsl}, 0)`)
+    halo.addColorStop(0,    `hsla(${hsl}, ${opacity * 0.9 * haloFade})`)
+    halo.addColorStop(0.12, `hsla(${hsl}, ${opacity * 0.65 * haloFade})`)
+    halo.addColorStop(0.4,  `hsla(${hsl}, ${opacity * 0.18})`)
+    halo.addColorStop(1,    `hsla(${hsl}, 0)`)
     ctx.fillStyle = halo
     ctx.fillRect(0, 0, size, size)
 
     // Inner bright core (additive-feeling via "lighter" composite)
+    // Foreground fireflies get an even punchier core
+    const coreBoost = 0.3 + (1 - depth) * 0.15  // 0.30 → 0.45 extra
     ctx.globalCompositeOperation = "lighter"
-    const core = ctx.createRadialGradient(c, c, 0, c, c, radius * 2.5)
-    core.addColorStop(0, `hsla(${coreHsl}, ${Math.min(opacity + 0.3, 1)})`)
-    core.addColorStop(0.3, `hsla(${coreHsl}, ${opacity * 0.7})`)
-    core.addColorStop(1, `hsla(${coreHsl}, 0)`)
+    const core = ctx.createRadialGradient(c, c, 0, c, c, radius * 2.2)
+    core.addColorStop(0,   `hsla(${coreHsl}, ${Math.min(opacity + coreBoost, 1)})`)
+    core.addColorStop(0.25, `hsla(${coreHsl}, ${opacity * 0.75})`)
+    core.addColorStop(1,   `hsla(${coreHsl}, 0)`)
     ctx.fillStyle = core
     ctx.beginPath()
-    ctx.arc(c, c, radius * 2.5, 0, Math.PI * 2)
+    ctx.arc(c, c, radius * 2.2, 0, Math.PI * 2)
     ctx.fill()
     ctx.globalCompositeOperation = "source-over"
   }
@@ -179,6 +201,12 @@ function createParticle(w: number, h: number, layer: LayerConfig): Particle {
   const x = Math.random() * w
   const y = Math.random() * h
 
+  // Depth factor: 0 = smallest particle (foreground), 1 = largest (background)
+  const depth = Math.min(
+    Math.max((radius - GLOBAL_RADIUS_MIN) / (GLOBAL_RADIUS_MAX - GLOBAL_RADIUS_MIN), 0),
+    1,
+  )
+
   return {
     x,
     y,
@@ -192,9 +220,10 @@ function createParticle(w: number, h: number, layer: LayerConfig): Particle {
     phase: Math.random() * Math.PI * 2,
     drift: layer.drift * rand(0.5, 1.5),
     driftFreq: layer.driftFreq * rand(0.8, 1.2),
+    depth,
     image: layer.firefly
-      ? createFireflyImage(radius, spread, opacity, layer.hsl, layer.coreHsl ?? layer.hsl)
-      : createGlowImage(radius, spread, opacity, layer.hsl),
+      ? createFireflyImage(radius, spread, opacity, layer.hsl, layer.coreHsl ?? layer.hsl, depth)
+      : createGlowImage(radius, spread, opacity, layer.hsl, depth),
   }
 }
 
@@ -214,6 +243,8 @@ export const ParticleCanvas = React.forwardRef<HTMLDivElement, ParticleCanvasPro
     const lastTimeRef = React.useRef<number>(0)
     /** Elapsed time in seconds — drives the sine wobble */
     const elapsedRef = React.useRef<number>(0)
+    /** Current scroll progress 0-1 for parallax offset */
+    const scrollYRef = React.useRef<number>(0)
 
     React.useEffect(() => {
       const canvas = canvasRef.current
@@ -275,7 +306,16 @@ export const ParticleCanvas = React.forwardRef<HTMLDivElement, ParticleCanvasPro
         return () => ro.disconnect()
       }
 
-      // ── Animation loop (delta-time + sine wobble) ───────────────────
+      // ── Scroll tracking for inter-layer parallax ────────────────────
+      // Tracks raw scroll position. Each layer gets a different speed
+      // multiplier based on its depth, creating separation between layers.
+      const onScroll = () => {
+        scrollYRef.current = window.scrollY
+      }
+      window.addEventListener("scroll", onScroll, { passive: true })
+      onScroll()
+
+      // ── Animation loop (delta-time + scroll parallax) ───────────────
       const draw = (timestamp: number) => {
         if (!lastTimeRef.current) lastTimeRef.current = timestamp
         const dt = Math.min((timestamp - lastTimeRef.current) / 1000, 0.1)
@@ -285,12 +325,21 @@ export const ParticleCanvas = React.forwardRef<HTMLDivElement, ParticleCanvasPro
         const w = canvas.width
         const h = canvas.height
         const t = elapsedRef.current
+        const scrollY = scrollYRef.current
         ctx.clearRect(0, 0, w, h)
 
         for (const p of particlesRef.current) {
+          // Inter-layer parallax: each layer scrolls at a different rate.
+          //   back  (depth≈1) → speed 0.05  (barely moves, feels distant)
+          //   mid   (depth≈0.3) → speed 0.18 (moderate shift)
+          //   front (depth≈0) → speed 0.35 (moves fastest, feels close)
+          // The offset is modulo canvas height so particles don't vanish.
+          const parallaxSpeed = 0.05 + (1 - p.depth) * 0.3
+          const scrollOffset = -(scrollY * parallaxSpeed) % h
+
           // Sine-wave wobble perpendicular to travel direction
           let drawX = p.x
-          let drawY = p.y
+          let drawY = p.y + scrollOffset
           if (p.drift > 0) {
             const wobble = Math.sin(t * p.driftFreq + p.phase) * p.drift
             // Perpendicular to velocity direction
@@ -328,6 +377,7 @@ export const ParticleCanvas = React.forwardRef<HTMLDivElement, ParticleCanvasPro
       return () => {
         cancelAnimationFrame(rafRef.current)
         clearTimeout(resizeTimer)
+        window.removeEventListener("scroll", onScroll)
         ro.disconnect()
       }
     }, [])
