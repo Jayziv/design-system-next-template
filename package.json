@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@jayziv/design-system-core": "^2.5.0",
+    "@jayziv/design-system-core": "^2.6.0",
     "lucide-react": "^0.511.0",
     "next": "^15.3.3",
     "react": "^19.1.0",
