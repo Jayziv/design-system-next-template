@@ -26,15 +26,42 @@ pnpm install
 pnpm dev   # http://localhost:3000
 ```
 
-## Theme
+## Theming
 
-Apply a colour palette by setting `data-color-theme` on `<html>` in `src/app/layout.tsx`:
+### How it works
 
-```tsx
-<html lang="en" data-color-theme="ocean">  // ocean | forest | sunset | default
+The colour palette is **baked** into `src/themes/active.css`. The `ThemeProvider` only manages light/dark mode at runtime — no runtime palette switching happens in consumer apps.
+
+### Switching palettes
+
+Run `pnpm generate:theme` in the design system repo to export a compiled CSS file for any colour theme + structural preset combination:
+
+```bash
+# In the design system repo (design-system-a/)
+pnpm generate:theme --color ocean --preset bold --out ./ocean-bold.css
+
+# Available colours: default | ocean | forest | sunset
+# Available presets: minimal | bold | editorial | corporate
 ```
 
-Or paste custom brand tokens into `src/themes/active.css`. See `src/themes/README.md`.
+Then paste the generated file's contents into `src/themes/active.css` in this project.
+
+### Brand customisation
+
+Edit `src/themes/active.css` directly to override any CSS custom property with your client's brand values. Only semantic tokens (`--primary`, `--background`, `--foreground`, etc.) — never hardcoded colours.
+
+Example overrides:
+
+```css
+:root {
+  --primary: 220 80% 45%;   /* brand blue */
+  --radius: 0.5rem;         /* rounder corners */
+}
+```
+
+### Light / dark mode
+
+`ThemeProvider` persists the user's `colorMode` preference (`light` or `dark`) in `localStorage`. The active palette is used for both modes — `src/themes/active.css` should include both `:root` (light) and `.dark` (dark) variable blocks.
 
 ## Agents (VS Code)
 

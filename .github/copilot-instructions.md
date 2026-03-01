@@ -47,6 +47,7 @@ import { Button, Card, Heading, Text, cn } from "@jayziv/design-system-core"
 
 | Use | Agent |
 |-----|-------|
+| Starting a new project | Discovery |
 | Planning a page | Page Planner |
 | Building a page | Page Builder |
 | Missing DS component | Component Requester |

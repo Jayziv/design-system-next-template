@@ -1,69 +1,87 @@
+// Home page — edit section content below to match your client's brand
+// Sections: Hero → Stats → Testimonials → CTA
+//
+// Note: HeroSection.primaryAction / secondaryAction use onClick callbacks.
+// This page is marked "use client" so we can use useRouter for navigation.
+"use client"
+
 import * as React from "react"
-import { Button, Heading, Text, Badge, Card, CardContent, CardHeader } from "@jayziv/design-system-core"
+import { useRouter } from "next/navigation"
+import {
+  HeroSection,
+  StatsSection,
+  TestimonialsSection,
+  CTABannerSection,
+} from "@jayziv/design-system-core"
 
-export default function Home() {
+export default function HomePage() {
+  const router = useRouter()
+
   return (
-    <main className="min-h-screen bg-background">
-      <div className="container mx-auto px-6 py-24 max-w-4xl">
-        <div className="space-y-4 mb-16">
-          <Badge variant="secondary">Design System v2.0.0</Badge>
-          <Heading as="h1" className="text-5xl font-bold">
-            Your project is ready.
-          </Heading>
-          <Text className="text-xl text-muted-foreground max-w-2xl">
-            Built with Next.js 15, Tailwind CSS 4, and{" "}
-            <code className="text-sm font-mono bg-muted px-1.5 py-0.5 rounded">
-              @jayziv/design-system-core
-            </code>
-            . Start by editing{" "}
-            <code className="text-sm font-mono bg-muted px-1.5 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </Text>
-          <div className="flex gap-3 pt-2">
-            <Button>Get started</Button>
-            <Button variant="outline">View components</Button>
-          </div>
-        </div>
+    <main>
+      {/* ← Replace heading/subheading/label text with client copy */}
+      <HeroSection
+        title="Welcome to [Client Name]"
+        subtitle="Your tagline goes here. Keep it to one powerful sentence."
+        primaryAction={{
+          label: "Get Started",
+          onClick: () => router.push("/contact"),
+        }}
+        secondaryAction={{
+          label: "Learn More",
+          onClick: () => router.push("/about"),
+        }}
+      />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card>
-            <CardHeader>
-              <Heading as="h3" className="text-base font-semibold">Theme</Heading>
-            </CardHeader>
-            <CardContent>
-              <Text className="text-sm text-muted-foreground">
-                Edit <code className="font-mono text-xs bg-muted px-1 py-0.5 rounded">src/themes/active.css</code> or set{" "}
-                <code className="font-mono text-xs bg-muted px-1 py-0.5 rounded">data-color-theme</code> on{" "}
-                <code className="font-mono text-xs bg-muted px-1 py-0.5 rounded">&lt;html&gt;</code>.
-              </Text>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <Heading as="h3" className="text-base font-semibold">Components</Heading>
-            </CardHeader>
-            <CardContent>
-              <Text className="text-sm text-muted-foreground">
-                59 components available. Import from{" "}
-                <code className="font-mono text-xs bg-muted px-1 py-0.5 rounded">@jayziv/design-system-core</code>.
-                Check <code className="font-mono text-xs bg-muted px-1 py-0.5 rounded">MANIFEST.json</code> before building.
-              </Text>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <Heading as="h3" className="text-base font-semibold">Agents</Heading>
-            </CardHeader>
-            <CardContent>
-              <Text className="text-sm text-muted-foreground">
-                Use Page Planner → Page Builder for each page. Component Requester for DS gaps. Theme Customizer for brand setup.
-              </Text>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+      {/* ← Replace stat values and labels with real client data */}
+      <StatsSection
+        label="By the numbers"
+        stats={[
+          { value: "10+", label: "Years experience" },
+          { value: "500+", label: "Happy clients" },
+          { value: "99%", label: "Satisfaction rate" },
+          { value: "24/7", label: "Support" },
+        ]}
+        variant="cards"
+      />
+
+      {/* ← Replace testimonials with real client quotes */}
+      <TestimonialsSection
+        heading="What our clients say"
+        label="Testimonials"
+        testimonials={[
+          {
+            quote: "Exceptional service. They delivered beyond our expectations.",
+            name: "Jane Smith",
+            role: "CEO",
+            company: "Acme Corp",
+            avatarFallback: "JS",
+          },
+          {
+            quote: "Professional, fast, and reliable. Highly recommend.",
+            name: "Mark Johnson",
+            role: "Director",
+            company: "TechStart",
+            avatarFallback: "MJ",
+          },
+          {
+            quote: "They understood our vision immediately. Results speak for themselves.",
+            name: "Sarah Lee",
+            role: "Founder",
+            company: "GreenPath",
+            avatarFallback: "SL",
+          },
+        ]}
+      />
+
+      {/* ← Adjust CTA copy and link targets */}
+      <CTABannerSection
+        heading="Ready to get started?"
+        subtext="Contact us today for a free consultation."
+        primaryAction={{ label: "Get in touch", href: "/contact" }}
+        secondaryAction={{ label: "See our work", href: "/services" }}
+        variant="primary"
+      />
     </main>
   )
 }
