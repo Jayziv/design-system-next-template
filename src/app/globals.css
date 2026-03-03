@@ -6,7 +6,7 @@
 /* Required: tells Tailwind CSS 4 to scan the DS package for utility classes.
    Without this line, DS component styles will not be generated in the build output.
    If the DS package path changes, update this path accordingly. Never remove it. */
-@source "../../../node_modules/@jayziv/design-system-core";
+@source "../../../node_modules/@jayziv/design-system-core/dist";
 
 /*
  * ─── ACTIVE THEME ────────────────────────────────────────────────────────────
@@ -25,3 +25,12 @@
  * One-off token tweaks that don't belong in a reusable theme.
  * Use bare :root { } — no @layer base needed in Tailwind CSS 4.
  */
+
+/* ── Faeble typography bindings ── */
+body {
+  font-family: var(--font-body, "Outfit"), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display, "Cormorant Garamond"), Georgia, serif;
+}

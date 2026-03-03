@@ -1,91 +1,83 @@
 /*
- * ─── ACTIVE THEME ────────────────────────────────────────────────────────────
+ * ─── FAEBLE STUDIO — ACTIVE THEME ────────────────────────────────────────────
  *
- * This file defines the ONE color palette shipped to production.
- * Swap it for a different theme by copying from src/themes/examples/.
+ * Preset:  bold
+ * Mode:    dark-enforced (ThemeProvider defaultColorMode="dark")
+ * Fonts:   Cormorant Garamond (display) + Outfit (body) — via next/font
  *
- * Only :root (light) and .dark blocks are needed — no data-color-theme
- * attribute required. The palette is baked at build time.
+ * Accent:  Jewel emerald  #10B981 → 160 84% 39%
+ * Base bg: Dark green     #0A0F0D → 156 28%  5%
  */
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222 47% 11%;
-  --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222 47% 11%;
-  --primary: 215 70% 40%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222 47% 11%;
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
-  --accent: 210 40% 96%;
-  --accent-foreground: 222 47% 11%;
-  --destructive: 0 72% 51%;
-  --destructive-foreground: 0 0% 100%;
-  --warning: 38 92% 50%;
-  --warning-foreground: 0 0% 100%;
-  --success: 142 71% 45%;
-  --success-foreground: 0 0% 100%;
-  --info: 205 82% 45%;
-  --info-foreground: 0 0% 100%;
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
-  --ring: 215 70% 40%;
-  --chart-1: 215 70% 50%;
-  --chart-2: 262 83% 58%;
-  --chart-3: 142 71% 45%;
-  --chart-4: 38 92% 50%;
-  --chart-5: 0 72% 51%;
-  --sidebar-background: 210 40% 98%;
-  --sidebar-foreground: 222 47% 11%;
-  --sidebar-primary: 215 70% 40%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 210 40% 94%;
-  --sidebar-accent-foreground: 222 47% 11%;
-  --sidebar-border: 214 32% 91%;
-  --sidebar-ring: 215 70% 40%;
-}
+  /* ── Backgrounds ── */
+  --background:           156 28%  5%;
+  --foreground:           156 10% 94%;
 
-.dark {
-  --background: 222 47% 4%;
-  --foreground: 210 40% 98%;
-  --card: 222 47% 4%;
-  --card-foreground: 210 40% 98%;
-  --popover: 222 47% 4%;
-  --popover-foreground: 210 40% 98%;
-  --primary: 215 70% 65%;
-  --primary-foreground: 215 70% 10%;
-  --secondary: 215 30% 15%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 215 30% 15%;
-  --muted-foreground: 215 20% 65%;
-  --accent: 215 30% 15%;
-  --accent-foreground: 210 40% 98%;
-  --destructive: 0 70% 60%;
+  --card:                 156 22%  8%;
+  --card-foreground:      156 10% 94%;
+
+  --popover:              156 22%  8%;
+  --popover-foreground:   156 10% 94%;
+
+  /* ── Brand accent — jewel emerald, used sparingly ── */
+  --primary:              160 84% 39%;
+  --primary-foreground:   0   0% 100%;
+
+  /* ── Secondary surfaces ── */
+  --secondary:            156 18% 12%;
+  --secondary-foreground: 156 10% 88%;
+
+  /* ── Muted ── */
+  --muted:                156 16% 10%;
+  --muted-foreground:     156  8% 52%;
+
+  /* ── Accent (glow wash surfaces, hover states) ── */
+  --accent:               160 30% 13%;
+  --accent-foreground:    160 60% 78%;
+
+  /* ── Feedback ── */
+  --destructive:          0  70% 58%;
   --destructive-foreground: 0 0% 100%;
-  --warning: 38 92% 60%;
-  --warning-foreground: 38 92% 10%;
-  --success: 142 71% 55%;
-  --success-foreground: 142 71% 10%;
-  --info: 205 82% 60%;
-  --info-foreground: 205 82% 10%;
-  --border: 215 30% 18%;
-  --input: 215 30% 18%;
-  --ring: 215 70% 65%;
-  --chart-1: 215 70% 60%;
-  --chart-2: 262 83% 68%;
-  --chart-3: 142 71% 55%;
-  --chart-4: 38 92% 60%;
-  --chart-5: 0 70% 61%;
-  --sidebar-background: 222 47% 7%;
-  --sidebar-foreground: 210 40% 90%;
-  --sidebar-primary: 215 70% 65%;
-  --sidebar-primary-foreground: 215 70% 10%;
-  --sidebar-accent: 215 30% 14%;
-  --sidebar-accent-foreground: 210 40% 90%;
-  --sidebar-border: 215 30% 18%;
-  --sidebar-ring: 215 70% 65%;
+  --warning:              38 90% 58%;
+  --warning-foreground:   38 90% 10%;
+  --success:              160 84% 39%;
+  --success-foreground:   0  0% 100%;
+  --info:                 199 80% 55%;
+  --info-foreground:      0  0% 100%;
+
+  /* ── Typography ── */
+  --font-display:         'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif;
+  --font-body:            'Outfit', 'Outfit Fallback', ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Borders & inputs ── */
+  --border:               156 15% 15%;
+  --input:                156 15% 15%;
+  --ring:                 160 84% 39%;
+
+  /* ── Charts ── */
+  --chart-1:              160 84% 45%;
+  --chart-2:              160 50% 30%;
+  --chart-3:              160 84% 60%;
+  --chart-4:              120 40% 35%;
+  --chart-5:              180 40% 40%;
+
+  /* ── Sidebar ── */
+  --sidebar-background:         156 25%  7%;
+  --sidebar-foreground:         156 10% 88%;
+  --sidebar-primary:            160 84% 39%;
+  --sidebar-primary-foreground: 0   0% 100%;
+  --sidebar-accent:             160 25% 12%;
+  --sidebar-accent-foreground:  160 50% 75%;
+  --sidebar-border:             156 15% 14%;
+  --sidebar-ring:               160 84% 39%;
+
+  /* ── Corner radius ── */
+  --radius: 0.25rem;
+
+  /* ── Elevation — emerald glow replaces neutral drop shadows ── */
+  --shadow-sm:  0 0  8px 0px hsl(160 84% 39% / 0.12);
+  --shadow-md:  0 0 16px 2px hsl(160 84% 39% / 0.18);
+  --shadow-lg:  0 0 32px 4px hsl(160 84% 39% / 0.24);
+  --shadow-xl:  0 0 56px 8px hsl(160 84% 39% / 0.30);
 }
