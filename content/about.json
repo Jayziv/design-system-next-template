@@ -1,0 +1,47 @@
+{
+  "about": {
+    "title": "We help businesses grow",
+    "subtitle": "About us",
+    "content": "Tell your brand story here. Who are you, what do you do, and why does it matter? This section supports rich content — add multiple paragraphs, lists, or images.",
+    "stats": [
+      { "value": "10+", "label": "Years in business" },
+      { "value": "500+", "label": "Projects delivered" }
+    ]
+  },
+  "stats": {
+    "label": "Our track record",
+    "columns": "4",
+    "variant": "minimal",
+    "items": [
+      { "value": "10+", "label": "Years experience" },
+      { "value": "500+", "label": "Projects completed" },
+      { "value": "50+", "label": "Team members" },
+      { "value": "20+", "label": "Countries served" }
+    ]
+  },
+  "team": {
+    "heading": "Meet the team",
+    "label": "Our people",
+    "columns": "3",
+    "members": [
+      {
+        "name": "Alex Rivera",
+        "role": "Founder & CEO",
+        "bio": "Short bio about this team member.",
+        "avatarFallback": "AR"
+      },
+      {
+        "name": "Jordan Kim",
+        "role": "Head of Design",
+        "bio": "Short bio about this team member.",
+        "avatarFallback": "JK"
+      },
+      {
+        "name": "Sam Patel",
+        "role": "Lead Developer",
+        "bio": "Short bio about this team member.",
+        "avatarFallback": "SP"
+      }
+    ]
+  }
+}

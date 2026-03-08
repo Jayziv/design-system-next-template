@@ -1,0 +1,15 @@
+{
+  "name": "My App",
+  "description": "Replace with your site description (155 chars max)",
+  "locale": "en_US",
+  "openGraph": {
+    "title": "My App",
+    "description": "Replace with your site description",
+    "siteName": "My App",
+    "imageAlt": "My App"
+  },
+  "twitter": {
+    "title": "My App",
+    "description": "Replace with your site description"
+  }
+}

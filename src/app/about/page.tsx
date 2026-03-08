@@ -1,8 +1,8 @@
-// About page — edit content below to match your client's brand
+// About page — content fetched from CMS adapter
 // Sections: About → Stats → Team
 //
-// AboutSection uses `title` + `content` props (required).
-// Replace all placeholder text with real client copy.
+// This is a server component. Content is fetched at build time (static)
+// or request time (dynamic CMS) based on CMS_PROVIDER env var.
 
 import {
   AboutSection,
@@ -11,69 +11,38 @@ import {
   Text,
 } from "@jayziv/design-system-core"
 import type { Metadata } from "next"
+import { getContentAdapter } from "@/lib/cms"
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn about our team and our story.", // ← Customise
+  description: "Learn about our team and our story.",
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const adapter = getContentAdapter()
+  const data = await adapter.getAboutPageData()
+
   return (
     <main>
-      {/* ← Replace title/content with client brand story */}
       <AboutSection
-        title="We help businesses grow"
-        subtitle="About us"
-        content={
-          <Text>
-            Tell your brand story here. Who are you, what do you do, and why does it matter?
-            This section supports rich content — add multiple paragraphs, lists, or images.
-          </Text>
-        }
-        stats={[
-          { value: "10+", label: "Years in business" },
-          { value: "500+", label: "Projects delivered" },
-        ]}
+        title={data.about.title}
+        subtitle={data.about.subtitle}
+        content={<Text>{data.about.content}</Text>}
+        stats={data.about.stats}
       />
 
-      {/* ← Replace with real client metrics */}
       <StatsSection
-        label="Our track record"
-        stats={[
-          { value: "10+", label: "Years experience" },
-          { value: "500+", label: "Projects completed" },
-          { value: "50+", label: "Team members" },
-          { value: "20+", label: "Countries served" },
-        ]}
-        columns={4}
-        variant="minimal"
+        label={data.stats.label}
+        stats={data.stats.items}
+        columns={data.stats.columns}
+        variant={data.stats.variant}
       />
 
-      {/* ← Replace with real team members */}
       <TeamSection
-        heading="Meet the team"
-        label="Our people"
-        members={[
-          {
-            name: "Alex Rivera",
-            role: "Founder & CEO",
-            bio: "Short bio about this team member.",
-            avatarFallback: "AR",
-          },
-          {
-            name: "Jordan Kim",
-            role: "Head of Design",
-            bio: "Short bio about this team member.",
-            avatarFallback: "JK",
-          },
-          {
-            name: "Sam Patel",
-            role: "Lead Developer",
-            bio: "Short bio about this team member.",
-            avatarFallback: "SP",
-          },
-        ]}
-        columns={3}
+        heading={data.team.heading}
+        label={data.team.label}
+        members={data.team.members}
+        columns={data.team.columns}
       />
     </main>
   )

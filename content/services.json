@@ -1,0 +1,58 @@
+{
+  "services": {
+    "title": "Services tailored to your needs",
+    "label": "What we do",
+    "items": [
+      {
+        "id": "service-1",
+        "title": "Service One",
+        "description": "Describe this service and the value it delivers to clients."
+      },
+      {
+        "id": "service-2",
+        "title": "Service Two",
+        "description": "Describe this service and the value it delivers to clients."
+      },
+      {
+        "id": "service-3",
+        "title": "Service Three",
+        "description": "Describe this service and the value it delivers to clients."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently asked questions",
+    "label": "FAQ",
+    "items": [
+      {
+        "question": "How long does a typical project take?",
+        "answer": "Project timelines vary depending on scope. Most projects are delivered within 4–8 weeks."
+      },
+      {
+        "question": "What is your pricing model?",
+        "answer": "We offer fixed-price packages for common projects and hourly rates for custom work."
+      },
+      {
+        "question": "Do you offer ongoing support?",
+        "answer": "Yes, we offer monthly maintenance and support packages for all completed projects."
+      },
+      {
+        "question": "How do we get started?",
+        "answer": "Simply fill out our contact form or give us a call. We will respond within one business day."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Interested in working together?",
+    "subtext": "Get in touch and we will put together a proposal tailored to your needs.",
+    "variant": "muted",
+    "primaryAction": {
+      "label": "Request a quote",
+      "href": "/contact"
+    },
+    "secondaryAction": {
+      "label": "",
+      "href": ""
+    }
+  }
+}

@@ -1,86 +1,68 @@
-// Home page — edit section content below to match your client's brand
+// Home page — content fetched from CMS adapter
 // Sections: Hero → Stats → Testimonials → CTA
 //
-// Note: HeroSection.primaryAction / secondaryAction use onClick callbacks.
-// This page is marked "use client" so we can use useRouter for navigation.
-"use client"
+// This is a server component. Content is fetched at build time (static)
+// or request time (dynamic CMS) based on CMS_PROVIDER env var.
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
 import {
   HeroSection,
   StatsSection,
   TestimonialsSection,
   CTABannerSection,
 } from "@jayziv/design-system-core"
+import { getContentAdapter } from "@/lib/cms"
 
-export default function HomePage() {
-  const router = useRouter()
+export default async function HomePage() {
+  const adapter = getContentAdapter()
+  const data = await adapter.getHomePageData()
 
   return (
     <main>
-      {/* ← Replace heading/subheading/label text with client copy */}
       <HeroSection
-        title="Welcome to [Client Name]"
-        subtitle="Your tagline goes here. Keep it to one powerful sentence."
+        title={data.hero.title}
+        subtitle={data.hero.subtitle}
         primaryAction={{
-          label: "Get Started",
-          onClick: () => router.push("/contact"),
+          label: data.hero.primaryAction.label,
+          href: data.hero.primaryAction.href,
         }}
-        secondaryAction={{
-          label: "Learn More",
-          onClick: () => router.push("/about"),
-        }}
+        secondaryAction={
+          data.hero.secondaryAction
+            ? {
+                label: data.hero.secondaryAction.label,
+                href: data.hero.secondaryAction.href,
+              }
+            : undefined
+        }
       />
 
-      {/* ← Replace stat values and labels with real client data */}
       <StatsSection
-        label="By the numbers"
-        stats={[
-          { value: "10+", label: "Years experience" },
-          { value: "500+", label: "Happy clients" },
-          { value: "99%", label: "Satisfaction rate" },
-          { value: "24/7", label: "Support" },
-        ]}
-        variant="cards"
+        label={data.stats.label}
+        stats={data.stats.items}
+        variant={data.stats.variant}
       />
 
-      {/* ← Replace testimonials with real client quotes */}
       <TestimonialsSection
-        heading="What our clients say"
-        label="Testimonials"
-        testimonials={[
-          {
-            quote: "Exceptional service. They delivered beyond our expectations.",
-            name: "Jane Smith",
-            role: "CEO",
-            company: "Acme Corp",
-            avatarFallback: "JS",
-          },
-          {
-            quote: "Professional, fast, and reliable. Highly recommend.",
-            name: "Mark Johnson",
-            role: "Director",
-            company: "TechStart",
-            avatarFallback: "MJ",
-          },
-          {
-            quote: "They understood our vision immediately. Results speak for themselves.",
-            name: "Sarah Lee",
-            role: "Founder",
-            company: "GreenPath",
-            avatarFallback: "SL",
-          },
-        ]}
+        heading={data.testimonials.heading}
+        label={data.testimonials.label}
+        testimonials={data.testimonials.items}
       />
 
-      {/* ← Adjust CTA copy and link targets */}
       <CTABannerSection
-        heading="Ready to get started?"
-        subtext="Contact us today for a free consultation."
-        primaryAction={{ label: "Get in touch", href: "/contact" }}
-        secondaryAction={{ label: "See our work", href: "/services" }}
-        variant="primary"
+        heading={data.cta.heading}
+        subtext={data.cta.subtext}
+        primaryAction={{
+          label: data.cta.primaryAction.label,
+          href: data.cta.primaryAction.href,
+        }}
+        secondaryAction={
+          data.cta.secondaryAction
+            ? {
+                label: data.cta.secondaryAction.label,
+                href: data.cta.secondaryAction.href,
+              }
+            : undefined
+        }
+        variant={data.cta.variant}
       />
     </main>
   )

@@ -1,8 +1,8 @@
-// Services page — edit content below to match your client's service offerings
+// Services page — content fetched from CMS adapter
 // Sections: Services → FAQ → CTA
 //
-// ServicesSection uses `title` prop (not `heading`).
-// Each service requires an `id` field.
+// This is a server component. Content is fetched at build time (static)
+// or request time (dynamic CMS) based on CMS_PROVIDER env var.
 
 import {
   ServicesSection,
@@ -10,68 +10,47 @@ import {
   CTABannerSection,
 } from "@jayziv/design-system-core"
 import type { Metadata } from "next"
+import { getContentAdapter } from "@/lib/cms"
 
 export const metadata: Metadata = {
   title: "Services",
-  description: "Explore the services we offer.", // ← Customise
+  description: "Explore the services we offer.",
 }
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const adapter = getContentAdapter()
+  const data = await adapter.getServicesPageData()
+
   return (
     <main>
-      {/* ← Replace title and services array with client's real offerings */}
       <ServicesSection
-        label="What we do"
-        title="Services tailored to your needs"
-        services={[
-          {
-            id: "service-1",
-            title: "Service One",
-            description: "Describe this service and the value it delivers to clients.",
-          },
-          {
-            id: "service-2",
-            title: "Service Two",
-            description: "Describe this service and the value it delivers to clients.",
-          },
-          {
-            id: "service-3",
-            title: "Service Three",
-            description: "Describe this service and the value it delivers to clients.",
-          },
-        ]}
+        label={data.services.label}
+        title={data.services.title}
+        services={data.services.items}
       />
 
-      {/* ← Replace with real FAQs relevant to this client's business */}
       <FAQSection
-        heading="Frequently asked questions"
-        label="FAQ"
-        items={[
-          {
-            question: "How long does a typical project take?",
-            answer: "Project timelines vary depending on scope. Most projects are delivered within 4–8 weeks.",
-          },
-          {
-            question: "What is your pricing model?",
-            answer: "We offer fixed-price packages for common projects and hourly rates for custom work.",
-          },
-          {
-            question: "Do you offer ongoing support?",
-            answer: "Yes, we offer monthly maintenance and support packages for all completed projects.",
-          },
-          {
-            question: "How do we get started?",
-            answer: "Simply fill out our contact form or give us a call. We will respond within one business day.",
-          },
-        ]}
+        heading={data.faq.heading}
+        label={data.faq.label}
+        items={data.faq.items}
       />
 
-      {/* ← Adjust CTA copy */}
       <CTABannerSection
-        heading="Interested in working together?"
-        subtext="Get in touch and we will put together a proposal tailored to your needs."
-        primaryAction={{ label: "Request a quote", href: "/contact" }}
-        variant="muted"
+        heading={data.cta.heading}
+        subtext={data.cta.subtext}
+        primaryAction={{
+          label: data.cta.primaryAction.label,
+          href: data.cta.primaryAction.href,
+        }}
+        secondaryAction={
+          data.cta.secondaryAction
+            ? {
+                label: data.cta.secondaryAction.label,
+                href: data.cta.secondaryAction.href,
+              }
+            : undefined
+        }
+        variant={data.cta.variant}
       />
     </main>
   )

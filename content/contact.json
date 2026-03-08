@@ -1,0 +1,31 @@
+{
+  "contact": {
+    "title": "Get in touch",
+    "subtitle": "We'd love to hear from you. Fill out the form and we'll be in touch shortly.",
+    "label": "Contact us"
+  },
+  "form": {
+    "submitLabel": "Send message",
+    "loadingLabel": "Sending…",
+    "successMessage": "Thank you! We'll be in touch shortly.",
+    "fields": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "you@example.com"
+      },
+      "subject": {
+        "label": "Subject",
+        "placeholder": "How can we help?"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Tell us about your project or question...",
+        "rows": 5
+      }
+    }
+  }
+}
