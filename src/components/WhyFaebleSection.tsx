@@ -12,23 +12,23 @@ import {
 const differentiators = [
   {
     icon: "⟡",
-    title: "Opinionated by default",
-    body: "We bring a perspective, not just a backlog. Every engagement starts with a discovery sprint to align on what actually matters.",
+    title: "No agency overhead",
+    body: "You work directly with the person building your site. No account managers, no juniors, no game of telephone.",
   },
   {
     icon: "◈",
-    title: "Async-native team",
-    body: "Timezone-flexible, documentation-first. You get structured updates, not standups for standups' sake.",
+    title: "Built for speed",
+    body: "Every site ships with 90+ Lighthouse scores. Your visitors won't wait — and neither will Google.",
   },
   {
     icon: "✦",
-    title: "Code you can own",
-    body: "No proprietary lock-in. Everything we ship is yours — readable, documented, portable.",
+    title: "You own everything",
+    body: "No lock-in, ever. Full source code, documentation, and hosting freedom. If we part ways, you keep it all.",
   },
   {
     icon: "⬡",
-    title: "Magic without mystery",
-    body: "Premium craft that doesn't perform complexity. We explain every decision so you build confidence, not dependency.",
+    title: "Honest pricing",
+    body: "Fixed-price quotes before we start. No scope creep surprises, no hidden fees. You know the cost upfront.",
   },
 ]
 

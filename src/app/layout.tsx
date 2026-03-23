@@ -20,8 +20,30 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: "Faeble Studio — We craft digital moments",
-  description: "Full-service development and design studio for startups and scale-ups.",
+  title: "Faeble Studio — Web Design & Development in Leeds, UK",
+  description:
+    "Custom websites for UK businesses. Fast, accessible, SEO-optimised sites built with React & Next.js by a Leeds studio with 7+ years experience. Free discovery call.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.faeblestudio.com"
+  ),
+  openGraph: {
+    title: "Faeble Studio — Web Design & Development in Leeds, UK",
+    description:
+      "Custom websites for UK businesses. Fast, accessible, SEO-optimised sites built with React & Next.js. Free discovery call.",
+    url: "/",
+    siteName: "Faeble Studio",
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Faeble Studio — Web Design & Development in Leeds",
+    description:
+      "Custom websites for UK businesses. Fast, accessible, SEO-optimised. Free discovery call.",
+  },
+  alternates: {
+    canonical: "/",
+  },
 }
 
 export default function RootLayout({
@@ -36,6 +58,35 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "Faeble Studio",
+              description:
+                "Custom websites for UK businesses. Fast, accessible, SEO-optimised sites built with React & Next.js.",
+              url: "https://www.faeblestudio.com",
+              areaServed: {
+                "@type": "Country",
+                name: "United Kingdom",
+              },
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Leeds",
+                addressCountry: "GB",
+              },
+              serviceType: [
+                "Web Design",
+                "Web Development",
+                "SEO",
+                "Website Maintenance",
+              ],
+              priceRange: "$$",
+            }),
+          }}
+        />
         <ThemeProvider
           defaultColorTheme="default"
           defaultPreset="bold"
