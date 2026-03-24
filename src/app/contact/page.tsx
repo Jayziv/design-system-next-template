@@ -11,7 +11,7 @@ import { ContactForm } from "./components/contact-form"
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with us.",
+  description: "Book a free 30-minute discovery call or send us a message. We respond within one business day.",
 }
 
 export default async function ContactPage() {

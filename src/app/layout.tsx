@@ -20,32 +20,37 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.faeblestudio.com"
+  ),
   title: {
-    default: "My App",        // ← Replace with client site name
-    template: "%s | My App",  // ← Page title prefix pattern (e.g. "About | Acme")
+    default: "Faeble Studio — Web Design & Development in Leeds, UK",
+    template: "%s | Faeble Studio",
   },
-  description: "Replace with your site description (155 chars max)", // ← Customise
+  description:
+    "Custom websites for UK businesses. Fast, accessible, SEO-optimised sites built with React & Next.js by a Leeds studio with 7+ years experience. Free discovery call.",
   openGraph: {
-    title: "My App",          // ← Replace with client site name
-    description: "Replace with your site description", // ← Customise
+    title: "Faeble Studio — Web Design & Development in Leeds, UK",
+    description:
+      "Custom websites for UK businesses. Fast, accessible, SEO-optimised sites built with React & Next.js. Free discovery call.",
     url: "/",
-    siteName: "My App",       // ← Replace with client site name
+    siteName: "Faeble Studio",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "My App",        // ← Replace with client site name
+        alt: "Faeble Studio",
       },
     ],
-    locale: "en_US",          // ← Adjust locale if needed
+    locale: "en_GB",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "My App",          // ← Replace with client site name
-    description: "Replace with your site description", // ← Customise
+    title: "Faeble Studio — Web Design & Development in Leeds",
+    description:
+      "Custom websites for UK businesses. Fast, accessible, SEO-optimised. Free discovery call.",
     images: ["/opengraph-image"],
   },
   robots: {
@@ -70,12 +75,35 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        {/*
-          ThemeProvider in consumer apps manages colorMode (light/dark) only.
-          The color palette and structural preset are baked into src/themes/active.css
-          at project setup time — use `pnpm generate:theme` in the design system repo
-          to re-export a different palette and paste it into src/themes/active.css
-        */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "Faeble Studio",
+              description:
+                "Custom websites for UK businesses. Fast, accessible, SEO-optimised sites built with React & Next.js.",
+              url: "https://www.faeblestudio.com",
+              areaServed: {
+                "@type": "Country",
+                name: "United Kingdom",
+              },
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Leeds",
+                addressCountry: "GB",
+              },
+              serviceType: [
+                "Web Design",
+                "Web Development",
+                "SEO",
+                "Website Maintenance",
+              ],
+              priceRange: "$$",
+            }),
+          }}
+        />
         <ThemeProvider
           defaultColorTheme="default"
           defaultPreset="bold"

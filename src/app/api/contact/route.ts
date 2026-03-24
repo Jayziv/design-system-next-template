@@ -87,13 +87,21 @@ export async function POST(request: Request) {
     await resend.emails.send({
       from: fromEmail,
       to: [toEmail],
-      subject: subject ?? `New contact form submission from ${name}`,
+      subject: subject ?? `New enquiry from ${name}`,
       html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>From:</strong> ${name} (${email})</p>
-        ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ""}
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, "<br>")}</p>
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #10B981;">New project enquiry</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+          ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ""}
+          <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 16px 0;" />
+          <p><strong>Message:</strong></p>
+          <p style="white-space: pre-wrap;">${message.replace(/\n/g, "<br>")}</p>
+          <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 16px 0;" />
+          <p style="color: #6b7280; font-size: 12px;">
+            Sent from faeblestudio.com contact form
+          </p>
+        </div>
       `,
       replyTo: email,
     })

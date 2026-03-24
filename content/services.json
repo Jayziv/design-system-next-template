@@ -1,22 +1,27 @@
 {
   "services": {
-    "title": "Services tailored to your needs",
+    "title": "Everything you need to get online and grow.",
     "label": "What we do",
     "items": [
       {
-        "id": "service-1",
-        "title": "Service One",
-        "description": "Describe this service and the value it delivers to clients."
+        "id": "web",
+        "title": "Custom Websites",
+        "description": "From landing pages to full business sites. Built with React & Next.js \u2014 mobile-first, fast by default, and designed to convert."
       },
       {
-        "id": "service-2",
-        "title": "Service Two",
-        "description": "Describe this service and the value it delivers to clients."
+        "id": "redesign",
+        "title": "Website Redesigns",
+        "description": "Already have a site that's underperforming? We rebuild it with modern tech, better SEO, and faster load times."
       },
       {
-        "id": "service-3",
-        "title": "Service Three",
-        "description": "Describe this service and the value it delivers to clients."
+        "id": "seo",
+        "title": "SEO & Performance",
+        "description": "Technical SEO foundations, Core Web Vitals tuning, and content strategy to get you found on Google."
+      },
+      {
+        "id": "support",
+        "title": "Ongoing Support",
+        "description": "Monthly retainers for hosting, updates, security patches, and performance monitoring. We keep it running so you don't have to."
       }
     ]
   },
@@ -26,28 +31,32 @@
     "items": [
       {
         "question": "How long does a typical project take?",
-        "answer": "Project timelines vary depending on scope. Most projects are delivered within 4–8 weeks."
+        "answer": "Most websites are delivered within 4\u20138 weeks depending on scope. We'll give you an honest timeline during the discovery call."
       },
       {
         "question": "What is your pricing model?",
-        "answer": "We offer fixed-price packages for common projects and hourly rates for custom work."
+        "answer": "Fixed-price quotes before we start. No scope creep surprises, no hidden fees. You know the cost upfront."
+      },
+      {
+        "question": "Do I own the code?",
+        "answer": "Yes, 100%. Full source code, documentation, and hosting freedom. No lock-in, ever. If we part ways, you keep everything."
       },
       {
         "question": "Do you offer ongoing support?",
-        "answer": "Yes, we offer monthly maintenance and support packages for all completed projects."
+        "answer": "Yes \u2014 monthly retainers for hosting, updates, security patches, and performance monitoring. Or we hand everything over and you run it yourself."
       },
       {
         "question": "How do we get started?",
-        "answer": "Simply fill out our contact form or give us a call. We will respond within one business day."
+        "answer": "Book a free 30-minute discovery call. No pressure, no jargon \u2014 just an honest conversation about what you need."
       }
     ]
   },
   "cta": {
-    "heading": "Interested in working together?",
-    "subtext": "Get in touch and we will put together a proposal tailored to your needs.",
+    "heading": "Ready to start a project?",
+    "subtext": "Book a free discovery call and let's talk about what you need.",
     "variant": "muted",
     "primaryAction": {
-      "label": "Request a quote",
+      "label": "Get in touch",
       "href": "/contact"
     },
     "secondaryAction": {

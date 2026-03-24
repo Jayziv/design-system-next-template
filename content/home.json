@@ -1,24 +1,24 @@
 {
   "hero": {
-    "title": "Welcome to [Client Name]",
-    "subtitle": "Your tagline goes here. Keep it to one powerful sentence.",
+    "title": "Websites that work as hard as you do.",
+    "subtitle": "A Leeds-based studio with 7+ years of industry experience, focused on one thing: websites that actually grow your business. No templates. No bloat. Just fast, accessible sites built to convert.",
     "primaryAction": {
-      "label": "Get Started",
-      "href": "/contact"
+      "label": "See what we build",
+      "href": "/services"
     },
     "secondaryAction": {
-      "label": "Learn More",
-      "href": "/about"
+      "label": "Book a free call",
+      "href": "/contact"
     }
   },
   "stats": {
     "label": "By the numbers",
     "variant": "cards",
     "items": [
-      { "value": "10+", "label": "Years experience" },
-      { "value": "500+", "label": "Happy clients" },
-      { "value": "99%", "label": "Satisfaction rate" },
-      { "value": "24/7", "label": "Support" }
+      { "value": "7+", "label": "Years in the industry" },
+      { "value": "React", "label": "& Next.js specialists" },
+      { "value": "90+", "label": "Lighthouse scores, guaranteed" },
+      { "value": "Leeds", "label": "Based in the UK" }
     ]
   },
   "testimonials": {
@@ -50,14 +50,14 @@
   },
   "cta": {
     "heading": "Ready to get started?",
-    "subtext": "Contact us today for a free consultation.",
+    "subtext": "Book a free 30-minute discovery call, or drop us a message. We respond within one business day.",
     "variant": "primary",
     "primaryAction": {
-      "label": "Get in touch",
+      "label": "Start a project",
       "href": "/contact"
     },
     "secondaryAction": {
-      "label": "See our work",
+      "label": "See our services",
       "href": "/services"
     }
   }

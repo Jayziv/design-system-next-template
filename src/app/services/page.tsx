@@ -14,7 +14,7 @@ import { getContentAdapter } from "@/lib/cms"
 
 export const metadata: Metadata = {
   title: "Services",
-  description: "Explore the services we offer.",
+  description: "Custom websites, redesigns, SEO, and ongoing support. Everything you need to get online and grow, from a Leeds-based studio.",
 }
 
 export default async function ServicesPage() {
