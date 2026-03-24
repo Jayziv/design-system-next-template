@@ -1,29 +1,29 @@
 {
   "contact": {
-    "title": "Get in touch",
-    "subtitle": "We'd love to hear from you. Fill out the form and we'll be in touch shortly.",
-    "label": "Contact us"
+    "title": "Let's talk",
+    "subtitle": "Book a free 30-minute discovery call, or drop us a message. We respond within one business day.",
+    "label": "Get in touch"
   },
   "form": {
     "submitLabel": "Send message",
-    "loadingLabel": "Sending…",
-    "successMessage": "Thank you! We'll be in touch shortly.",
+    "loadingLabel": "Sending\u2026",
+    "successMessage": "Message sent! Thanks for reaching out. We'll get back to you within one business day.",
     "fields": {
       "name": {
-        "label": "Name",
+        "label": "Your name",
         "placeholder": "Your name"
       },
       "email": {
         "label": "Email",
-        "placeholder": "you@example.com"
+        "placeholder": "you@company.com"
       },
       "subject": {
         "label": "Subject",
         "placeholder": "How can we help?"
       },
       "message": {
-        "label": "Message",
-        "placeholder": "Tell us about your project or question...",
+        "label": "Tell us about your project",
+        "placeholder": "Tell us about your project\u2026",
         "rows": 5
       }
     }

@@ -15,7 +15,7 @@ import { getContentAdapter } from "@/lib/cms"
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn about our team and our story.",
+  description: "Meet the team behind Faeble Studio. 7+ years of web development experience, now focused on building fast, accessible websites for UK businesses.",
 }
 
 export default async function AboutPage() {

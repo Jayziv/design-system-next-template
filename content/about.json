@@ -1,46 +1,34 @@
 {
   "about": {
-    "title": "We help businesses grow",
-    "subtitle": "About us",
-    "content": "Tell your brand story here. Who are you, what do you do, and why does it matter? This section supports rich content — add multiple paragraphs, lists, or images.",
+    "title": "7+ years of building for the web. Now building for you.",
+    "subtitle": "Our story",
+    "content": "Faeble Studio was founded by Jay after years of working across agencies and product teams \u2014 building everything from startup MVPs to enterprise platforms. The common thread? The best results always came from treating design and engineering as one conversation, not two departments. We started this studio to bring that same rigour to businesses that deserve better than a template. Every project gets our full attention. No juniors, no handoffs, no surprises. Just clear communication, honest timelines, and code we're proud to hand over.",
     "stats": [
-      { "value": "10+", "label": "Years in business" },
-      { "value": "500+", "label": "Projects delivered" }
+      { "value": "7+", "label": "Years in the industry" },
+      { "value": "React", "label": "& Next.js specialists" },
+      { "value": "Leeds", "label": "Based in the UK" }
     ]
   },
   "stats": {
-    "label": "Our track record",
-    "columns": "4",
+    "label": "What we deliver",
+    "columns": "3",
     "variant": "minimal",
     "items": [
-      { "value": "10+", "label": "Years experience" },
-      { "value": "500+", "label": "Projects completed" },
-      { "value": "50+", "label": "Team members" },
-      { "value": "20+", "label": "Countries served" }
+      { "value": "90+", "label": "Lighthouse scores" },
+      { "value": "WCAG", "label": "Accessibility compliant" },
+      { "value": "100%", "label": "Source code ownership" }
     ]
   },
   "team": {
-    "heading": "Meet the team",
-    "label": "Our people",
-    "columns": "3",
+    "heading": "Who you'll work with",
+    "label": "The team",
+    "columns": "1",
     "members": [
       {
-        "name": "Alex Rivera",
-        "role": "Founder & CEO",
-        "bio": "Short bio about this team member.",
-        "avatarFallback": "AR"
-      },
-      {
-        "name": "Jordan Kim",
-        "role": "Head of Design",
-        "bio": "Short bio about this team member.",
-        "avatarFallback": "JK"
-      },
-      {
-        "name": "Sam Patel",
-        "role": "Lead Developer",
-        "bio": "Short bio about this team member.",
-        "avatarFallback": "SP"
+        "name": "Jay",
+        "role": "Founder & Lead Developer",
+        "bio": "Full-stack developer with 7+ years across agencies and product teams. Specialises in React, Next.js, and design systems. Every Faeble project gets his direct attention.",
+        "avatarFallback": "JN"
       }
     ]
   }
